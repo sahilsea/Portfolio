@@ -9,9 +9,33 @@ const SONGS = [
 ]
 
 export function MusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
+  const [hasInteracted, setHasInteracted] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  useEffect(() => {
+    const handleInteraction = () => {
+      if (!hasInteracted) {
+        setHasInteracted(true)
+        setIsPlaying(true)
+      }
+    }
+
+    if (!hasInteracted) {
+      window.addEventListener('click', handleInteraction, { once: true })
+      window.addEventListener('keydown', handleInteraction, { once: true })
+      window.addEventListener('scroll', handleInteraction, { once: true })
+      window.addEventListener('touchstart', handleInteraction, { once: true })
+    }
+
+    return () => {
+      window.removeEventListener('click', handleInteraction)
+      window.removeEventListener('keydown', handleInteraction)
+      window.removeEventListener('scroll', handleInteraction)
+      window.removeEventListener('touchstart', handleInteraction)
+    }
+  }, [hasInteracted])
 
   useEffect(() => {
     if (audioRef.current) {
