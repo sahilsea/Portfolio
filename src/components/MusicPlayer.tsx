@@ -19,6 +19,14 @@ export function MusicPlayer() {
       if (!hasInteracted) {
         setHasInteracted(true)
         setIsPlaying(true)
+        
+        // Critical for Mobile Safari: audio must be played synchronously inside the user event handler
+        if (audioRef.current) {
+          audioRef.current.play().catch(e => {
+            console.log('Mobile interaction play failed:', e)
+            setIsPlaying(false)
+          })
+        }
       }
     }
 
