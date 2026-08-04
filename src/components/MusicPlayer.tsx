@@ -9,14 +9,17 @@ const SONGS = [
 ]
 
 export function MusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.play().catch(e => console.log('Audio play failed:', e))
+        audioRef.current.play().catch(e => {
+          console.log('Audio play failed (browser blocked autoplay):', e)
+          setIsPlaying(false)
+        })
       } else {
         audioRef.current.pause()
       }
