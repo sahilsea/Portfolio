@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { MusicPlayer } from '@/components/MusicPlayer'
 
 type TabId = 'personal' | 'professional'
 
@@ -32,7 +33,7 @@ export default function Home() {
     <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#0b1120] text-white">
       {/* ---------- Looping video background ---------- */}
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover max-sm:object-[65%_center]"
         autoPlay
         muted
         loop
@@ -128,7 +129,7 @@ export default function Home() {
               className="mb-5 flex items-center gap-3 text-xs font-medium tracking-[0.35em] text-lantern/90 uppercase sm:text-sm"
             >
               <span className="h-px w-10 bg-lantern/60" />
-              {current.id === 'personal' ? 'Welcome' : 'Developer'}
+              {current.id === 'personal' ? 'hello I am' : 'Developer'}
             </motion.p>
 
             {/* Name */}
@@ -180,6 +181,8 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      <MusicPlayer />
     </div>
   )
 }
