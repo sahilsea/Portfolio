@@ -26,9 +26,7 @@ export const metadata: Metadata = {
   description: "Portfolio of Sahil Mehta — an MCA student in the final year building real-world projects.",
   keywords: ["Sahil Mehta", "portfolio", "MCA", "developer", "software engineer", "student"],
   authors: [{ name: "Sahil Mehta" }],
-  icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
-  },
+
   openGraph: {
     title: "Sahil Mehta — Portfolio",
     description: "An MCA student in the final year building real-world projects.",
